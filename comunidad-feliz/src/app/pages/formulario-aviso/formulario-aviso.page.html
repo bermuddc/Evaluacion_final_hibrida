@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/lista-avisos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nueva Publicación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item [class.shake-error]="nuevoAviso.title.length > 0 && nuevoAviso.title.length < 5">
+      <ion-label position="stacked">Título *</ion-label>
+      <ion-input 
+        type="text" 
+        [(ngModel)]="nuevoAviso.title" 
+        placeholder="Ej: Mascota perdida">
+      </ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="nuevoAviso.title.length > 0 && nuevoAviso.title.length < 5">
+      ⚠️ El título debe tener al menos 5 caracteres
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="stacked">Fotografía</ion-label>
+    </ion-item>
+    <div class="image-section">
+      <img 
+        [src]="nuevoAviso.image || 'https://placehold.co/300x200?text=Haz+clic+en+Tomar+Foto'" 
+        alt="Vista previa" 
+        class="image-preview">
+      <ion-button expand="block" (click)="tomarFoto()">
+        <ion-icon name="camera" slot="start"></ion-icon>
+        Tomar Foto
+      </ion-button>
+    </div>
+
+    <ion-item [class.shake-error]="nuevoAviso.description.length > 0 && nuevoAviso.description.length < 20">
+      <ion-label position="stacked">Descripción *</ion-label>
+      <ion-textarea 
+        [(ngModel)]="nuevoAviso.description" 
+        rows="4" 
+        placeholder="Describe detalladamente lo sucedido, incluyendo ubicación, características, y datos de contacto...">
+      </ion-textarea>
+    </ion-item>
+    <ion-note color="danger" *ngIf="nuevoAviso.description.length > 0 && nuevoAviso.description.length < 20">
+      ⚠️ La descripción debe tener al menos 20 caracteres
+    </ion-note>
+
+  </ion-list>
+
+  <div class="buttons-container">
+    <ion-button expand="block" (click)="guardarAviso()" 
+                [disabled]="nuevoAviso.title.length < 5 || nuevoAviso.description.length < 20">
+      <ion-icon name="save" slot="start"></ion-icon>
+      Guardar Publicación
+    </ion-button>
+    
+    <ion-button expand="block" color="light" (click)="cancelar()">
+      <ion-icon name="close" slot="start"></ion-icon>
+      Cancelar
+    </ion-button>
+  </div>
+</ion-content>

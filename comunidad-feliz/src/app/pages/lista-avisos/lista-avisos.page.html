@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Publicaciones de la Comunidad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="posts.length === 0" class="empty-state">
+    <ion-icon name="document-text-outline" size="large"></ion-icon>
+    <h3>No hay publicaciones aún</h3>
+    <p>Sé el primero en compartir un aviso con la comunidad</p>
+  </div>
+
+  <ion-list *ngIf="posts.length > 0">
+    <ion-item-sliding *ngFor="let post of posts">
+      
+      <ion-item>
+        <ion-thumbnail slot="start" *ngIf="post.image">
+          <img [src]="post.image" alt="Imagen de publicación">
+        </ion-thumbnail>
+        
+        <ion-label>
+          <h2>{{ post.title }}</h2>
+          <p class="fecha">{{ post.date | dateFormat }}</p>
+          <p class="descripcion">{{ post.description }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deletePost(post)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="navigateToForm()" class="custom-fab">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

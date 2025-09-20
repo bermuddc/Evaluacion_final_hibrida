@@ -1,0 +1,82 @@
+.image-section {
+  text-align: center;
+  padding: 16px;
+}
+
+.image-preview {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px dashed var(--ion-color-medium);
+  margin-bottom: 16px;
+}
+
+.buttons-container {
+  padding: 16px;
+}
+
+ion-note {
+  display: block;
+  padding: 0 16px;
+  margin-top: -10px;
+  margin-bottom: 16px;
+  font-size: 0.9em;
+}
+
+ion-textarea {
+  min-height: 100px;
+}
+
+ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+ion-note[color="danger"] {
+  color: var(--ion-color-danger) !important;
+  font-size: 0.8em;
+  font-weight: 500;
+  margin-top: -8px;
+  margin-bottom: 16px;
+  padding: 0 16px;
+  display: block;
+  background: rgba(var(--ion-color-danger-rgb), 0.1);
+  border-radius: 4px;
+  padding: 8px;
+  border-left: 4px solid var(--ion-color-danger);
+}
+
+ion-item:has(+ ion-note[color="danger"]) {
+  --background: rgba(var(--ion-color-danger-rgb), 0.05);
+  --border-color: var(--ion-color-danger);
+}
+
+.shake-error {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.invalid-field {
+  --border-color: var(--ion-color-danger) !important;
+  --background: rgba(var(--ion-color-danger-rgb), 0.05) !important;
+}
+
+.char-counter {
+  font-size: 0.75em;
+  text-align: right;
+  padding: 0 16px;
+  margin-top: -10px;
+  margin-bottom: 16px;
+  color: var(--ion-color-medium);
+}
+
+.char-counter.invalid {
+  color: var(--ion-color-danger);
+}
